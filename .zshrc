@@ -6,25 +6,24 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # === Plugins ===
 plugins=(
-  git
-  docker
-  kubectl
-  terraform
-  fzf
-  colored-man-pages
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  command-not-found
-  macos
-  # Weitere nützliche Plugins für DevOps/SRE:
-  zsh-completions
-  helm
-  gcloud
   aws
-  pip
-  history-substring-search
+  colored-man-pages
+  command-not-found
+  docker
   dotenv
+  fzf
+  gcloud
+  git
+  helm
+  history-substring-search
+  kubectl
+  macos
+  pip
+  terraform
   thefuck
+  zsh-autosuggestions
+  zsh-completions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -47,6 +46,8 @@ setopt SHARE_HISTORY
 setopt HIST_VERIFY
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
+setopt APPEND_HISTORY
+setopt HIST_REDUCE_BLANKS
 
 # === Aliases for DevOps ===
 alias k=kubectl
@@ -80,6 +81,7 @@ else
 fi
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' rehash true
 
 # === Extra DevOps Helpers ===
 # Show active k8s context in prompt (via Starship)
@@ -91,8 +93,11 @@ if [ -d "$NVM_DIR" ]; then
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 fi
 
-# Homebrew Pfad ergänzen (optional, falls installiert)
-if [ -d /opt/homebrew/bin ]; then
+# Terminal-Title setzen
+precmd() { print -Pn "\e]0;%n@%m: %~\a" }
+
+# Homebrew Pfad ergänzen (optional, falls installiert und nicht schon im PATH)
+if [ -d /opt/homebrew/bin ] && [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
   export PATH="/opt/homebrew/bin:$PATH"
 fi
 

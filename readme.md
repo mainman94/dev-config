@@ -7,6 +7,7 @@ Damit Änderungen im Repo sofort aktiv sind, kannst du Symlinks setzen:
 ```bash
 ln -sf ~/work/priv/dev-config/.config/starship.toml ~/.config/starship.toml
 ln -sf ~/work/priv/dev-config/.zshrc ~/.zshrc
+ln -sf ~/work/priv/dev-config/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 ```
 
 ## Oh My Zsh Plugins
