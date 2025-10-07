@@ -12,7 +12,7 @@ $kubernetes\
 [](fg:#17877B bg:#2EC4B6)\
 $gcloud\
 [](fg:#2EC4B6 bg:#FFD166)\
-$aws\
+[](fg:#FFD166 bg:#4682FA)\
 $terraform\
 $git_branch\
 $git_status\
