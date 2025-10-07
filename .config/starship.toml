@@ -7,7 +7,9 @@ $time\
 [](fg:#1E3B6B bg:#4682FA)\
 $directory\
 [](fg:#4682FA bg:#FFD166)\
+[](fg:#FFD166 bg:#17877B)\
 $kubernetes\
+[](fg:#17877B bg:#2EC4B6)\
 $gcloud\
 $aws\
 $terraform\
@@ -25,7 +27,7 @@ style = "fg:#E6F0FA bg:#4682FA"
 
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
-symbol = "  "
+symbol = "   "
 style = "fg:#1E3B6B bg:#FFD166"
 
 [git_status]
@@ -40,7 +42,7 @@ disabled = false
 
 [hg_branch]
 format = "[ $symbol$branch ]($style)"
-symbol = " "
+symbol = "  "
 
 [cmd_duration]
 format = "[ 󰅐 $duration ]($style)"
@@ -49,7 +51,7 @@ show_milliseconds = true
 min_time = 500
 
 [kubernetes]
-format = '[󱃾 $context( \($namespace\)) ](fg:#E6F0FA bg:#2EC4B6)'
+format = '[ 󱃾 $context( \($namespace\))](fg:#E6F0FA bg:#17877B)'
 disabled = false
 contexts = [
     { context_pattern = "gke_learningsuite-prod-de_europe-west3_ls-prod-gke", context_alias = "ls-prod-de" },
@@ -59,11 +61,11 @@ contexts = [
 ]
 
 [gcloud]
-format = '[ $project@$account ](fg:#E6F0FA bg:#2EC4B6)'
+format = '[  $project@$account ](fg:#E6F0FA bg:#2EC4B6)'
 disabled = false
 
 [terraform]
-format = '[󱁢 $workspace ](fg:#E6F0FA bg:#4682FA)'
+format = '[ 󱁢 $workspace ](fg:#E6F0FA bg:#4682FA)'
 disabled = false
 
 [time]
