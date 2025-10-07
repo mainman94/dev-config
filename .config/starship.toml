@@ -10,15 +10,16 @@ $directory\
 [](fg:#FFD166 bg:#17877B)\
 $kubernetes\
 [](fg:#17877B bg:#2EC4B6)\
+
 $gcloud\
 [](fg:#2EC4B6 bg:#FFD166)\
 [](fg:#FFD166 bg:#4682FA)\
 $terraform\
+[](fg:#4682FA bg:#FFD166)\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:#FFD166 bg:#FFD166)\
-[](fg:#FFD166 bg:#0A0E1A)\
+[](fg:#FFD166 )\
 $cmd_duration\
 $character\
 """
@@ -78,4 +79,4 @@ format = '[[ 󱑍 $time ](bg:#1E3B6B fg:#5CE8A3)]($style)'
 
 [character]
 success_symbol = '[ ](bold #5CE8A3) '
-error_symbol = '[ ✗](#FF6B6B) '
+error_symbol = '[ ✗](bold #FF6B6B) '
