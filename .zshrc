@@ -24,8 +24,7 @@ plugins=(
   pip
   history-substring-search
   dotenv
-  fd
-  ripgrep
+  thefuck
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -85,8 +84,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # === Extra DevOps Helpers ===
 # Show active k8s context in prompt (via Starship)
 export STARSHIP_CONFIG=~/.config/starship.toml
-eval $(thefuck --alias FUCK)
-eval $(thefuck --alias) 
 
 export NVM_DIR="$HOME/.nvm"
 if [ -d "$NVM_DIR" ]; then
