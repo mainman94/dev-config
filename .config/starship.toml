@@ -17,6 +17,7 @@ $terraform\
 $git_branch\
 $git_status\
 $git_metrics\
+[](fg:#FFD166 bg:#FFD166)\
 [](fg:#FFD166 bg:#0A0E1A)\
 $cmd_duration\
 $character\
