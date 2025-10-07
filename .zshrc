@@ -9,22 +9,35 @@ plugins=(
   git
   docker
   kubectl
-  kubectx
   terraform
   fzf
   colored-man-pages
   zsh-autosuggestions
   zsh-syntax-highlighting
   command-not-found
-  kitty
   macos
+  # Weitere nützliche Plugins für DevOps/SRE:
+  zsh-completions
+  helm
+  gcloud
+  aws
+  pip
+  history-substring-search
+  dotenv
+  fd
+  ripgrep
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # === Starship Prompt ===
-eval "$(starship init zsh)"
-source <(fzf --zsh)
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
 
 # === History ===
 HISTFILE=~/.zsh_history
@@ -32,6 +45,9 @@ HISTSIZE=50000
 SAVEHIST=50000
 setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE
 setopt SHARE_HISTORY
+setopt HIST_VERIFY
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
 
 # === Aliases for DevOps ===
 alias k=kubectl
@@ -57,7 +73,12 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # === Completion ===
-autoload -U compinit && compinit
+autoload -Uz compinit
+if [ -d ~/.zcompdump ]; then
+  compinit -C
+else
+  compinit
+fi
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
@@ -68,8 +89,15 @@ eval $(thefuck --alias FUCK)
 eval $(thefuck --alias) 
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -d "$NVM_DIR" ]; then
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
+
+# Homebrew Pfad ergänzen (optional, falls installiert)
+if [ -d /opt/homebrew/bin ]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/path.zsh.inc'; fi

@@ -1,35 +1,41 @@
+# Korrigiertes Farbschema ohne [palette], basierend auf dem ursprünglichen Design
 format = """\
-[](bg:#030B16 fg:#7DF9AA)\
-[󰀵 ](bg:#7DF9AA fg:#090c0c)\
-[](fg:#7DF9AA bg:#1C3A5E)\
+[](bg:#0A0E1A fg:#5CE8A3)\
+[󰀵 ](bg:#5CE8A3 fg:#0A0E1A)\
+[](fg:#5CE8A3 bg:#1E3B6B)\
 $time\
-[](fg:#1C3A5E bg:#3B76F0)\
+[](fg:#1E3B6B bg:#4682FA)\
 $directory\
-[](fg:#3B76F0 bg:#FCF392)\
+[](fg:#4682FA bg:#FFD166)\
+$kubernetes\
+$gcloud\
+$aws\
+$terraform\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:#FCF392 bg:#030B16)\
+[](fg:#FFD166 bg:#0A0E1A)\
+$cmd_duration\
 $character\
 """
 
 [directory]
 format = "[  $path ]($style)"
-style = "fg:#E4E4E4 bg:#3B76F0"
+style = "fg:#E6F0FA bg:#4682FA"
 
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
 symbol = "  "
-style = "fg:#1C3A5E bg:#FCF392"
+style = "fg:#1E3B6B bg:#FFD166"
 
 [git_status]
 format = '[$all_status]($style)'
-style = "fg:#1C3A5E bg:#FCF392"
+style = "fg:#1E3B6B bg:#FFD166"
 
 [git_metrics]
 format = "([+$added]($added_style))[]($added_style)"
-added_style = "fg:#1C3A5E bg:#FCF392"
-deleted_style = "fg:bright-red bg:235"
+added_style = "fg:#1E3B6B bg:#FFD166"
+deleted_style = "fg:#FF6B6B bg:#FFD166"
 disabled = false
 
 [hg_branch]
@@ -38,15 +44,34 @@ symbol = " "
 
 [cmd_duration]
 format = "[ 󰅐 $duration ]($style)"
-style = "fg:bright-white bg:18"
+style = "fg:#E6F0FA bg:#0A0E1A"
+show_milliseconds = true
+min_time = 500
 
-[character]
-success_symbol = '[ ](bold green) '
-error_symbol = '[ ✗](#E84D44) '
+[kubernetes]
+format = '[󱃾 $context( \($namespace\)) ](fg:#E6F0FA bg:#2EC4B6)'
+disabled = false
+contexts = [
+    { context_pattern = "gke_learningsuite-prod-de_europe-west3_ls-prod-gke", context_alias = "ls-prod-de" },
+    { context_pattern = "gke_learningsuite-staging_europe-west1-d_ls-prod-gke", context_alias = "ls-staging" },
+    { context_pattern = "gke_ls-poc-dev_europe-west1-d_ls-poc-dev-gke", context_alias = "poc-dev" },
+    { context_pattern = "k3d-argo-testcluster", context_alias = "local-dev" }
+]
+
+[gcloud]
+format = '[ $project@$account ](fg:#E6F0FA bg:#2EC4B6)'
+disabled = false
+
+[terraform]
+format = '[󱁢 $workspace ](fg:#E6F0FA bg:#4682FA)'
+disabled = false
 
 [time]
 disabled = true
-time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
+time_format = "%R"
+style = "bg:#1E3B6B"
+format = '[[ 󱑍 $time ](bg:#1E3B6B fg:#5CE8A3)]($style)'
 
+[character]
+success_symbol = '[ ](bold #5CE8A3) '
+error_symbol = '[ ✗](#FF6B6B) '
