@@ -6,7 +6,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # === Plugins ===
 plugins=(
-  aws
   colored-man-pages
   command-not-found
   docker
@@ -21,6 +20,7 @@ plugins=(
   pip
   terraform
   thefuck
+  tldr
   zsh-autosuggestions
   zsh-completions
   zsh-syntax-highlighting
@@ -65,7 +65,7 @@ alias ...="cd ../.."
 alias kns="kubectl config set-context --current --namespace"
 
 # === Exports ===
-export EDITOR="vi"
+export EDITOR="nvim"
 export PAGER="less -FirSwX"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
@@ -96,15 +96,20 @@ fi
 # Terminal-Title setzen
 precmd() { print -Pn "\e]0;%n@%m: %~\a" }
 
-# Homebrew Pfad ergänzen (optional, falls installiert und nicht schon im PATH)
-if [ -d /opt/homebrew/bin ] && [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
-  export PATH="/opt/homebrew/bin:$PATH"
+# Homebrew Pfad und Google Cloud SDK nur auf macOS aktivieren
+if [[ "$OSTYPE" == darwin* ]]; then
+  # Homebrew Pfad ergänzen (optional, falls installiert und nicht schon im PATH)
+  if [ -d /opt/homebrew/bin ] && [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+  fi
+
+  # The next line updates PATH for the Google Cloud SDK.
+  if [ -f '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/path.zsh.inc' ]; then
+    . '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/path.zsh.inc'
+  fi
+
+  # The next line enables shell command completion for gcloud.
+  if [ -f '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then
+    . '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/completion.zsh.inc'
+  fi
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-

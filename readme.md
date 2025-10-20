@@ -45,7 +45,7 @@ Diese Plugins müssen **nicht** geklont werden, einfach in die Plugin-Liste in `
 Installation z.B. via Homebrew:
 
 ```bash
-brew install fd ripgrep
+brew install fd ripgrep kubectx nvim tmux kitty
 ```
 
 ## Hinweise
