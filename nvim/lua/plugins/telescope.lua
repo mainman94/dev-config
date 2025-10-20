@@ -4,7 +4,7 @@ return {
     pickers = {
       find_files = {
         hidden = true,
-        no_ignore = true, -- optional: zeigt auch Dateien aus .gitignore
+        no_ignore = true,
       },
     },
   },
