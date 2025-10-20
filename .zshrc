@@ -1,8 +1,8 @@
 # === ZSH Basics ===
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set Theme (Starship prompt empfohlen)
-#ZSH_THEME="robbyrussell"   # wird durch Starship überschrieben
+# Set Theme (Starship prompt recommended)
+# ZSH_THEME="robbyrussell"   # Overwritten by Starship
 
 # === Plugins ===
 plugins=(
@@ -25,7 +25,6 @@ plugins=(
   zsh-completions
   zsh-syntax-highlighting
 )
-
 source $ZSH/oh-my-zsh.sh
 
 # === Starship Prompt ===
@@ -33,44 +32,36 @@ if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
+# === FZF Integration ===
 if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
 
 # === History ===
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
-setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE
-setopt SHARE_HISTORY
-setopt HIST_VERIFY
-setopt INC_APPEND_HISTORY
-setopt EXTENDED_HISTORY
-setopt APPEND_HISTORY
-setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY HIST_VERIFY INC_APPEND_HISTORY EXTENDED_HISTORY APPEND_HISTORY HIST_REDUCE_BLANKS
 
-# === Aliases for DevOps ===
-alias k=kubectl
-alias tf=terraform
-alias d=docker
-alias dc="docker compose"
-alias lg="lazygit"
-alias htop="htop -t"
-
-# safer navigation
-alias ..="cd .."
-alias ...="cd ../.."
-
-# Quick kube namespace switch
-alias kns="kubectl config set-context --current --namespace"
+# === Aliases ===
+# DevOps
+alias k='kubectl'
+alias tf='terraform'
+alias d='docker'
+alias dc='docker compose'
+alias lg='lazygit'
+alias htop='htop -t'
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+# Kube namespace switch
+alias kns='kubectl config set-context --current --namespace'
 
 # === Exports ===
-export EDITOR="nvim"
-export PAGER="less -FirSwX"
+export EDITOR="${EDITOR:-nvim}"
+export PAGER="${PAGER:-less -FirSwX}"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
-# === FZF Integration ===
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # === Completion ===
 autoload -Uz compinit
@@ -89,32 +80,30 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
 fi
 
 # === Extra DevOps Helpers ===
-# Show active k8s context in prompt (via Starship)
 export STARSHIP_CONFIG=~/.config/starship.toml
 
+# === Node Version Manager ===
 export NVM_DIR="$HOME/.nvm"
 if [ -d "$NVM_DIR" ]; then
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 fi
 
-# Terminal-Title setzen
+# === Terminal Title ===
 precmd() { print -Pn "\e]0;%n@%m: %~\a" }
 
-# Homebrew Pfad und Google Cloud SDK nur auf macOS aktivieren
+# === macOS Specific ===
 if [[ "$OSTYPE" == darwin* ]]; then
-  # Homebrew Pfad ergänzen (optional, falls installiert und nicht schon im PATH)
+  # Homebrew Path
   if [ -d /opt/homebrew/bin ] && [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
   fi
-
-  # The next line updates PATH for the Google Cloud SDK.
-  if [ -f '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/path.zsh.inc' ]; then
-    . '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/path.zsh.inc'
+  # Google Cloud SDK
+  GCLOUD_PATH="$HOME/Downloads/google-cloud-sdk"
+  if [ -f "$GCLOUD_PATH/path.zsh.inc" ]; then
+    . "$GCLOUD_PATH/path.zsh.inc"
   fi
-
-  # The next line enables shell command completion for gcloud.
-  if [ -f '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then
-    . '/Users/philippmatthiashauptmann/Downloads/google-cloud-sdk/completion.zsh.inc'
+  if [ -f "$GCLOUD_PATH/completion.zsh.inc" ]; then
+    . "$GCLOUD_PATH/completion.zsh.inc"
   fi
 fi
