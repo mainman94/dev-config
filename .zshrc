@@ -1,8 +1,17 @@
 # === ZSH Basics ===
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set Theme (Starship prompt recommended)
+# === Theme (Starship prompt recommended) ===
 # ZSH_THEME="robbyrussell"   # Overwritten by Starship
+
+# === Starship Prompt ===
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
+# === Extra DevOps Helpers ===
+export STARSHIP_CONFIG=~/.config/starship.toml
+
 
 # === Plugins ===
 plugins=(
@@ -27,11 +36,6 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-# === Starship Prompt ===
-if command -v starship >/dev/null 2>&1; then
-  eval "$(starship init zsh)"
-fi
-
 # === FZF Integration ===
 if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
@@ -45,18 +49,17 @@ SAVEHIST=50000
 setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY HIST_VERIFY INC_APPEND_HISTORY EXTENDED_HISTORY APPEND_HISTORY HIST_REDUCE_BLANKS
 
 # === Aliases ===
-# DevOps
+# --- DevOps ---
 alias k='kubectl'
 alias tf='terraform'
 alias d='docker'
 alias dc='docker compose'
 alias lg='lazygit'
 alias htop='htop -t'
-# Navigation
+
+# --- Navigation ---
 alias ..='cd ..'
 alias ...='cd ../..'
-# Kube namespace switch
-alias kns='kubectl config set-context --current --namespace'
 
 # === Exports ===
 export EDITOR="${EDITOR:-nvim}"
@@ -65,22 +68,22 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # === Completion ===
 autoload -Uz compinit
-if [ -d ~/.zcompdump ]; then
+if [ -f ~/.zcompdump ]; then
   compinit -C
 else
   compinit
 fi
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' rehash true
 
 # === TMUX Integration ===
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  if [ "$TERM" = "xterm-kitty" ]; then
     exec tmux
+  fi
 fi
-
-# === Extra DevOps Helpers ===
-export STARSHIP_CONFIG=~/.config/starship.toml
 
 # === Node Version Manager ===
 export NVM_DIR="$HOME/.nvm"
@@ -94,16 +97,8 @@ precmd() { print -Pn "\e]0;%n@%m: %~\a" }
 
 # === macOS Specific ===
 if [[ "$OSTYPE" == darwin* ]]; then
-  # Homebrew Path
+  # --- Homebrew Path ---
   if [ -d /opt/homebrew/bin ] && [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
-  fi
-  # Google Cloud SDK
-  GCLOUD_PATH="$HOME/Downloads/google-cloud-sdk"
-  if [ -f "$GCLOUD_PATH/path.zsh.inc" ]; then
-    . "$GCLOUD_PATH/path.zsh.inc"
-  fi
-  if [ -f "$GCLOUD_PATH/completion.zsh.inc" ]; then
-    . "$GCLOUD_PATH/completion.zsh.inc"
   fi
 fi

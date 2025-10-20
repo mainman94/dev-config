@@ -1,4 +1,4 @@
-# Korrigiertes Farbschema ohne [palette], basierend auf dem ursprünglichen Design
+# === Corrected color scheme ===
 format = """\
 [](bg:#0A0E1A fg:#5CE8A3)\
 [󰀵 ](bg:#5CE8A3 fg:#0A0E1A)\
@@ -10,7 +10,6 @@ $directory\
 [](fg:#FFD166 bg:#17877B)\
 $kubernetes\
 [](fg:#17877B bg:#2EC4B6)\
-
 $gcloud\
 [](fg:#2EC4B6 bg:#FFD166)\
 [](fg:#FFD166 bg:#4682FA)\
@@ -24,35 +23,42 @@ $cmd_duration\
 $character\
 """
 
+# === Directory ===
 [directory]
 format = "[  $path ]($style)"
 style = "fg:#E6F0FA bg:#4682FA"
 
+# === Git Branch ===
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
 symbol = "   "
 style = "fg:#1E3B6B bg:#FFD166"
 
+# === Git Status ===
 [git_status]
 format = '[$all_status]($style)'
 style = "fg:#1E3B6B bg:#FFD166"
 
+# === Git Metrics ===
 [git_metrics]
 format = "([+$added]($added_style))[]($added_style)"
 added_style = "fg:#1E3B6B bg:#FFD166"
 deleted_style = "fg:#FF6B6B bg:#FFD166"
 disabled = false
 
+# === Mercurial Branch ===
 [hg_branch]
 format = "[ $symbol$branch ]($style)"
 symbol = "  "
 
+# === Command Duration ===
 [cmd_duration]
 format = "[ 󰅐 $duration ]($style)"
 style = "fg:#E6F0FA bg:#0A0E1A"
 show_milliseconds = true
 min_time = 500
 
+# === Kubernetes ===
 [kubernetes]
 format = '[ 󱃾 $context( \($namespace\))](fg:#E6F0FA bg:#17877B)'
 disabled = false
@@ -63,20 +69,24 @@ contexts = [
     { context_pattern = "k3d-argo-testcluster", context_alias = "local-dev" }
 ]
 
+# === Google Cloud ===
 [gcloud]
 format = '[  $project@$account ](fg:#E6F0FA bg:#2EC4B6)'
 disabled = false
 
+# === Terraform ===
 [terraform]
 format = '[ 󱁢 $workspace ](fg:#E6F0FA bg:#4682FA)'
 disabled = false
 
+# === Time ===
 [time]
 disabled = true
 time_format = "%R"
 style = "bg:#1E3B6B"
 format = '[[ 󱑍 $time ](bg:#1E3B6B fg:#5CE8A3)]($style)'
 
+# === Character ===
 [character]
 success_symbol = '[ ](bold #5CE8A3) '
 error_symbol = '[ ✗](bold #FF6B6B) '

@@ -4,15 +4,21 @@ A collection of configuration files and setup instructions for a productive deve
 
 ## Symlinks for Central Configuration Files
 
-To apply changes from this repo immediately, set up symlinks:
+To apply changes from this repo immediately, set up symlinks.  
+Falls die Zieldatei schon existiert, entferne sie vorher:
 
 ```bash
+rm -f ~/.config/starship.toml
 ln -sf ~/work/priv/dev-config/.config/starship.toml ~/.config/starship.toml
-ln -sf ~/work/priv/dev-config/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
-ln -sf ~/work/priv/dev-config/.config/kitty/current-theme.conf ~/.config/kitty/current-theme.conf
-ln -sf ~/work/priv/dev-config/.tmux.conf ~/.tmux.conf
-ln -s ~/work/priv/dev-config/nvim ~/.config/nvim
+
+rm -f ~/.zshrc
 ln -sf ~/work/priv/dev-config/.zshrc ~/.zshrc
+
+rm -f ~/.config/kitty/kitty.conf
+ln -sf ~/work/priv/dev-config/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+
+rm -f ~/.config/kitty/current-theme.conf
+ln -sf ~/work/priv/dev-config/.config/kitty/current-theme.conf ~/.config/kitty/current-theme.conf
 ```
 
 ## Oh My Zsh Plugins
@@ -46,7 +52,8 @@ Add these to the `plugins` list in your `.zshrc` (no need to clone):
 Install these tools via Homebrew:
 
 ```bash
-brew install fd ripgrep kubectx nvim tmux kitty
+brew install fd ripgrep kubectx nvim tmux kitty gh fzf k9s kubectl-argo-rollouts starhship tfenv
+brew install --cask gcloud-sdk kitty font-jetbrains-mono-nerd-font
 ```
 
 ## Notes
@@ -60,7 +67,3 @@ brew install fd ripgrep kubectx nvim tmux kitty
 Download JetBrains Mono Nerd Font:
 
 - [JetBrainsMono.zip](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)
-
-```
-
-```
