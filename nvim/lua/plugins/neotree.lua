@@ -7,3 +7,7 @@ require("neo-tree").setup({
     },
   },
 })
+
+return {
+  -- your plugin spec table here
+}

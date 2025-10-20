@@ -83,6 +83,11 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' rehash true
 
+# === TMUX Integration ===
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    exec tmux
+fi
+
 # === Extra DevOps Helpers ===
 # Show active k8s context in prompt (via Starship)
 export STARSHIP_CONFIG=~/.config/starship.toml

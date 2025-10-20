@@ -1,21 +1,25 @@
 # Dev Config Setup
 
-## Symlinks für zentrale Konfigurationsdateien
+A collection of configuration files and setup instructions for a productive development environment on macOS.
 
-Damit Änderungen im Repo sofort aktiv sind, kannst du Symlinks setzen:
+## Symlinks for Central Configuration Files
+
+To apply changes from this repo immediately, set up symlinks:
 
 ```bash
 ln -sf ~/work/priv/dev-config/.config/starship.toml ~/.config/starship.toml
-ln -sf ~/work/priv/dev-config/.zshrc ~/.zshrc
 ln -sf ~/work/priv/dev-config/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 ln -sf ~/work/priv/dev-config/.config/kitty/current-theme.conf ~/.config/kitty/current-theme.conf
+ln -sf ~/work/priv/dev-config/.tmux.conf ~/.tmux.conf
+ln -s ~/work/priv/dev-config/nvim ~/.config/nvim
+ln -sf ~/work/priv/dev-config/.zshrc ~/.zshrc
 ```
 
 ## Oh My Zsh Plugins
 
-Einige Plugins müssen manuell geklont werden, andere sind bereits in Oh My Zsh enthalten.
+Some plugins must be cloned manually; others are included with Oh My Zsh.
 
-### Externe Plugins (müssen geklont werden)
+### External Plugins (manual installation)
 
 ```bash
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
@@ -24,9 +28,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/history-substring-search
 ```
 
-### Plugins, die bereits in Oh My Zsh enthalten sind
+### Built-in Oh My Zsh Plugins
 
-Diese Plugins müssen **nicht** geklont werden, einfach in die Plugin-Liste in `.zshrc` aufnehmen:
+Add these to the `plugins` list in your `.zshrc` (no need to clone):
 
 - dotenv
 - helm
@@ -37,19 +41,26 @@ Diese Plugins müssen **nicht** geklont werden, einfach in die Plugin-Liste in `
 - k9s
 - thefuck
 
-### Tools (separat installieren)
+### Recommended Tools
 
-- fd
-- ripgrep
-
-Installation z.B. via Homebrew:
+Install these tools via Homebrew:
 
 ```bash
 brew install fd ripgrep kubectx nvim tmux kitty
 ```
 
-## Hinweise
+## Notes
 
-- Nach Änderungen an `.zshrc` oder `starship.toml` das Terminal neu starten oder `source ~/.zshrc` ausführen.
-- Die Plugin-Liste in `.zshrc` kann beliebig erweitert werden, siehe [Oh My Zsh Plugin List](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins).
-- Für weitere Anpassungen siehe die jeweiligen Plugin-Repos.
+- After changing `.zshrc` or `starship.toml`, restart your terminal or run `source ~/.zshrc`.
+- Extend the plugin list in `.zshrc` as desired. See [Oh My Zsh Plugin List](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins).
+- For further customization, refer to the respective plugin repositories.
+
+## Fonts
+
+Download JetBrains Mono Nerd Font:
+
+- [JetBrainsMono.zip](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)
+
+```
+
+```
