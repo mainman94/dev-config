@@ -19,6 +19,8 @@ ln -sf ~/work/priv/dev-config/.config/kitty/kitty.conf ~/.config/kitty/kitty.con
 
 rm -f ~/.config/kitty/current-theme.conf
 ln -sf ~/work/priv/dev-config/.config/kitty/current-theme.conf ~/.config/kitty/current-theme.conf
+
+
 ```
 
 ## Oh My Zsh Plugins
@@ -52,7 +54,7 @@ Add these to the `plugins` list in your `.zshrc` (no need to clone):
 Install these tools via Homebrew:
 
 ```bash
-brew install fd ripgrep kubectx nvim tmux kitty gh fzf k9s kubectl-argo-rollouts starhship tfenv
+brew install fd ripgrep kubectx nvim kitty gh fzf k9s kubectl-argo-rollouts starhship tfenv
 brew install --cask gcloud-sdk kitty font-jetbrains-mono-nerd-font
 ```
 
