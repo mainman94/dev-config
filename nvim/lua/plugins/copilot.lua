@@ -5,11 +5,15 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		dependencies = { "L3MON4D3/LuaSnip" },
+		dependencies = {
+			"L3MON4D3/LuaSnip",
+			"hrsh7th/cmp-cmdline", -- Für cmdline completion
+			"hrsh7th/cmp-path",    -- Für Pfad completion in cmdline
+		},
 		config = function()
 			local cmp = require("cmp")
 			cmp.setup({
-				completion = { autocomplete = true },
+				completion = { autocomplete = { "InsertEnter", "TextChanged" } }, -- Korrekte Einstellung
 				sources = {
 					{ name = "copilot" },
 					{ name = "nvim_lsp" },
@@ -23,6 +27,21 @@ return {
 					['<Tab>'] = cmp.mapping.select_next_item(),
 					['<S-Tab>'] = cmp.mapping.select_prev_item(),
 				}),
+			})
+			-- Commandline completion aktivieren
+			cmp.setup.cmdline(':', {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = 'path' },
+				}, {
+					{ name = 'cmdline' }
+				}),
+			})
+			cmp.setup.cmdline('/', {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = 'buffer' }
+				}
 			})
 		end,
 	},
