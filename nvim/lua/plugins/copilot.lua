@@ -4,6 +4,29 @@
 
 return {
 	{
+		"hrsh7th/nvim-cmp",
+		dependencies = { "L3MON4D3/LuaSnip" },
+		config = function()
+			local cmp = require("cmp")
+			cmp.setup({
+				completion = { autocomplete = true },
+				sources = {
+					{ name = "copilot" },
+					{ name = "nvim_lsp" },
+					{ name = "buffer" },
+					{ name = "path" },
+					{ name = "luasnip" },
+				},
+				mapping = cmp.mapping.preset.insert({
+					['<C-Space>'] = cmp.mapping.complete(),
+					['<CR>'] = cmp.mapping.confirm({ select = true }),
+					['<Tab>'] = cmp.mapping.select_next_item(),
+					['<S-Tab>'] = cmp.mapping.select_prev_item(),
+				}),
+			})
+		end,
+	},
+	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		branch = "canary", -- Verwende die neueste Version
 		dependencies = {
@@ -69,6 +92,13 @@ return {
 			vim.api.nvim_set_hl(0, 'CopilotChatHeader', { fg = '#7C3AED', bold = true })
 			vim.api.nvim_set_hl(0, 'CopilotChatSeparator', { fg = '#374151' })
 			vim.api.nvim_set_hl(0, 'CopilotChatKeyword', { fg = '#10B981', italic = true })
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		dependencies = { "zbirenbaum/copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup()
 		end,
 	},
 }
