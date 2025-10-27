@@ -15,11 +15,6 @@ ln -sf ~/work/priv/dev-config/.config/starship.toml ~/.config/starship.toml
 rm -f ~/.zshrc
 ln -sf ~/work/priv/dev-config/.zshrc ~/.zshrc
 
-rm -f ~/.config/kitty/kitty.conf
-ln -sf ~/work/priv/dev-config/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
-
-rm -f ~/.config/kitty/current-theme.conf
-ln -sf ~/work/priv/dev-config/.config/kitty/current-theme.conf ~/.config/kitty/current-theme.conf
 ```
 
 ---
@@ -59,8 +54,8 @@ Add these to the `plugins` array in your `.zshrc` (no need to clone):
 Install these essential tools via Homebrew for a modern workflow:
 
 ```bash
-brew install fd ripgrep kubectx nvim kitty gh fzf k9s kubectl-argo-rollouts starhship tfenv
-brew install --cask gcloud-sdk kitty font-jetbrains-mono-nerd-font
+brew install fd ripgrep kubectx nvim ghostty gh fzf k9s kubectl-argo-rollouts starhship tfenv
+brew install --cask gcloud-sdk font-jetbrains-mono-nerd-font
 ```
 
 ---
