@@ -61,6 +61,7 @@ alias htop='htop -t'
 alias ..='cd ..'
 alias ...='cd ../..'
 
+alias vi='nvim'
 # === Exports ===
 export EDITOR="${EDITOR:-nvim}"
 export PAGER="${PAGER:-less -FirSwX}"
@@ -111,3 +112,10 @@ export PATH="$PATH:~/.lmstudio/bin"
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 export PATH=$PATH:$HOME/go/bin
+
+source $HOME/.grit/bin/env
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/philippmatthiashauptmann/.lmstudio/bin"
+# End of LM Studio CLI section
+
