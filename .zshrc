@@ -114,3 +114,6 @@ export PATH="$PATH:~/.lmstudio/bin"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 export PATH=$PATH:$HOME/go/bin
 
+
+# bun completions
+[ -s "/Users/philippmatthiashauptmann/.bun/_bun" ] && source "/Users/philippmatthiashauptmann/.bun/_bun"
