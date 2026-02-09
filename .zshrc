@@ -15,16 +15,22 @@ export STARSHIP_CONFIG=~/.config/starship.toml
 
 # === Plugins ===
 plugins=(
+  argocd
+  brew
   colored-man-pages
   command-not-found
   docker
   dotenv
   fzf
   gcloud
+  gh
   git
+  git-auto-fetch:
   helm
   history-substring-search
+  k9s
   kubectl
+  kubectx
   macos
   pip
   podman
