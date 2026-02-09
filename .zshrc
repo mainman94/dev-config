@@ -25,7 +25,7 @@ plugins=(
   gcloud
   gh
   git
-  git-auto-fetch:
+  git-auto-fetch
   helm
   history-substring-search
   k9s
