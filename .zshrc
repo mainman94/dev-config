@@ -121,5 +121,6 @@ export PATH="$PATH:~/.lmstudio/bin"
 export PATH=$PATH:$HOME/go/bin
 
 
-# bun completions
-[ -s "/Users/philippmatthiashauptmann/.bun/_bun" ] && source "/Users/philippmatthiashauptmann/.bun/_bun"
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
