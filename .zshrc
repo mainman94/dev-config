@@ -17,6 +17,7 @@ export STARSHIP_CONFIG=~/.config/starship.toml
 plugins=(
   argocd
   brew
+  bun
   colored-man-pages
   command-not-found
   docker
@@ -39,6 +40,7 @@ plugins=(
   tldr
   zsh-autosuggestions
   zsh-completions
+  zsh-interactive-cd
   zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
@@ -124,3 +126,8 @@ export PATH=$PATH:$HOME/go/bin
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/philipp/.lmstudio/bin"
+# End of LM Studio CLI section
+
