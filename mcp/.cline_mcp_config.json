@@ -1,0 +1,88 @@
+{
+  "$schema": "https://schemas.cline.bot/mcp-config.schema.json",
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}"
+      },
+      "disabled": false,
+      "autoApprove": false
+    },
+    "gitlab": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-gitlab"],
+      "env": {
+        "GITLAB_ACCESS_TOKEN": "${env:GITLAB_TOKEN}",
+        "GITLAB_HOST": "https://gitlab.com"
+      },
+      "disabled": false,
+      "autoApprove": false
+    },
+    "docker": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-docker"],
+      "env": {
+        "DOCKER_HOST": "${env:DOCKER_HOST}"
+      },
+      "disabled": false
+    },
+    "terraform": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-terraform"],
+      "env": {
+        "TF_VAR_environment": "development"
+      },
+      "disabled": false
+    },
+    "kubernetes": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-kubernetes"],
+      "env": {
+        "KUBECONFIG": "${env:KUBECONFIG}"
+      },
+      "disabled": false
+    },
+    "postgresql": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-postgresql"],
+      "env": {
+        "DATABASE_URL": "${env:DATABASE_URL}"
+      },
+      "disabled": false
+    },
+    "aws": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-aws"],
+      "env": {
+        "AWS_PROFILE": "${env:AWS_PROFILE}",
+        "AWS_REGION": "eu-central-1"
+      },
+      "disabled": true
+    },
+    "openapi": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-openapi"],
+      "disabled": false
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-memory"],
+      "disabled": false
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["@upstash/context7-mcp"],
+      "env": {
+        "CONTEXT7_API_KEY": "${env:CONTEXT7_API_KEY}"
+      },
+      "disabled": false
+    }
+  },
+  "settings": {
+    "autoReconnect": true,
+    "timeout": 30000,
+    "logLevel": "info"
+  }
+}

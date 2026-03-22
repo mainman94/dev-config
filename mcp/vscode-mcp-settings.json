@@ -1,0 +1,97 @@
+{
+  "description": "VS Code MCP Configuration Snippet",
+  "settings": {
+    "// MCP Configuration": "Zentrale Model Context Protocol Integration",
+    "[mcp]": {
+      "configFile": "/Users/philipp/work/priv/dev-config/.cline_mcp_config.json",
+      "autoReconnect": true,
+      "logLevel": "info",
+      "timeout": 30000
+    },
+    "// Cline Extension Settings": "Falls du Cline nutzt",
+    "[cline]": {
+      "modelProviderName": "claude-3-5-sonnet",
+      "apiKey": "${env:ANTHROPIC_API_KEY}",
+      "mcpServers": {
+        "github": true,
+        "gitlab": true,
+        "docker": true,
+        "terraform": true,
+        "kubernetes": true,
+        "postgresql": true,
+        "aws": false,
+        "openapi": true,
+        "memory": true
+      }
+    },
+    "// Terminal/Shell Integration": "Shell Einstellungen",
+    "terminal.integrated.env.osx": {
+      "GITHUB_TOKEN": "${env:GITHUB_TOKEN}",
+      "GITLAB_TOKEN": "${env:GITLAB_TOKEN}",
+      "AWS_PROFILE": "${env:AWS_PROFILE}",
+      "AWS_REGION": "${env:AWS_REGION}",
+      "KUBECONFIG": "${env:KUBECONFIG}",
+      "DOCKER_HOST": "${env:DOCKER_HOST}",
+      "TF_CLOUD_TOKEN": "${env:TF_CLOUD_TOKEN}"
+    },
+    "// Code Completion": "Intelligente Vorschläge",
+    "github.copilot.enable": {
+      "*": true,
+      "plaintext": true,
+      "markdown": true,
+      "terraform": true,
+      "yaml": true
+    },
+    "[github.copilot.codeCompletion]": {
+      "enabled": true
+    },
+    "// DevOps Tools": "Integration von Tools",
+    "[terraform]": {
+      "format.enable": true,
+      "format.ignoreExtensions": [],
+      "lintPath": "terraform",
+      "lintConfig": {
+        "module": true,
+        "deep": true
+      }
+    },
+    "[docker]": {
+      "format.enable": true,
+      "lintConfiguration": {
+        "hadolint": {
+          "enabled": true
+        }
+      }
+    },
+    "[kubernetes]": {
+      "kubeconfig": "${env:KUBECONFIG}",
+      "kubectl.autoRefresh": true
+    },
+    "// Debugging": "Debug-Optionen",
+    "[debug]": {
+      "console": "integratedTerminal",
+      "logOutput": "extHostProcess"
+    }
+  },
+  "snippets": {
+    "mcp.init": {
+      "prefix": "mcp-init",
+      "body": [
+        "// Initialize MCP Server Connection",
+        "const mcp = require('@modelcontextprotocol/sdk');",
+        "const mcpConfig = require('.//.cline_mcp_config.json');",
+        "",
+        "async function initMCP() {",
+        "  try {",
+        "    console.log('🤖 Initializing MCP servers...');",
+        "    // Configuration wird automatisch geladen",
+        "    console.log('✅ MCP servers ready');",
+        "  } catch (error) {",
+        "    console.error('❌ MCP initialization failed:', error);",
+        "  }",
+        "}"
+      ],
+      "description": "MCP Server Initialization Template"
+    }
+  }
+}

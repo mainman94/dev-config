@@ -8,3 +8,34 @@ foo.*
 *.log
 data
 lazy-lock.*
+
+# 🤖 MCP Configuration (Secrets & Local Config)
+.env.mcp
+.env.mcp.local
+.cline/
+.claude/
+.vscode/mcp_config.json
+
+# 🔐 Sensitive Files
+*.key
+*.pem
+*.secret
+credentials.json
+.aws/credentials
+
+# 📦 Package Manager
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# 🔧 Development & IDE
+.vscode/settings.json
+.DS_Store
+*.swp
+*.swo
+*~
+
+# 🌍 Environment
+.env
+.env.local
+.env.*.local
