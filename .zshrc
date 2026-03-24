@@ -131,6 +131,10 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH:/Users/philipp/.lmstudio/bin"
 # End of LM Studio CLI section
 
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/philippmatthiashauptmann/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
 # === 🤖 MCP Configuration (Model Context Protocol) ===
 # Load environment variables and helper functions
 [ -f ~/.env.mcp ] && source ~/.env.mcp
