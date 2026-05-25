@@ -135,7 +135,9 @@ export PATH="$PATH:/Users/philipp/.lmstudio/bin"
 export PATH="/Users/philippmatthiashauptmann/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
-# === 🤖 MCP Configuration (Model Context Protocol) ===
-# Load environment variables and helper functions
-[ -f ~/.env.mcp ] && source ~/.env.mcp
-[ -f ~/work/priv/dev-config/mcp/mcp-helpers.sh ] && source ~/work/priv/dev-config/mcp/mcp-helpers.sh
+source <(switch completion zsh)
+source <(switcher init zsh)
+alias s=switch
+
+# bun completions
+[ -s "/Users/philipp/.bun/_bun" ] && source "/Users/philipp/.bun/_bun"
