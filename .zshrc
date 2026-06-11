@@ -128,16 +128,18 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/philipp/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/philippmatthiashauptmann/.rd/bin:$PATH"
+export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
-source <(switch completion zsh)
-source <(switcher init zsh)
-alias s=switch
+if command -v switcher >/dev/null 2>&1; then
+  source <(switcher completion zsh)
+  source <(switcher init zsh)
+  alias s=switch
+fi
 
 # bun completions
-[ -s "/Users/philipp/.bun/_bun" ] && source "/Users/philipp/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
