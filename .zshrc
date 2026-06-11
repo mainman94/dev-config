@@ -88,12 +88,6 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' rehash true
 
-# === TMUX Integration ===
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  if [ "$TERM" = "xterm-kitty" ]; then
-    exec tmux
-  fi
-fi
 
 # === Node Version Manager ===
 export NVM_DIR="$HOME/.nvm"
